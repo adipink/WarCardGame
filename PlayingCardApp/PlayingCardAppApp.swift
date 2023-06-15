@@ -13,7 +13,7 @@ struct PlayingCardAppApp: App {
         WindowGroup {
             NavigationView {
                 ScoreView()
-                //PlayingView()
+                
             }
         }
     }
