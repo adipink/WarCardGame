@@ -13,23 +13,32 @@ extension Color {
 }
 
 struct PlayingView: View {
+    @Binding var dispalyingCurApp: PlayingCardAppApp.CurrentScreen
+    @Binding var playerScore: Int
+    @Binding var pcScore: Int 
+
+    
     @State  var playerCard = "card7"
     @State  var pcCard = "card13"
     
-    @State var playerScore = 0
+    
+    //@State private var playerScore = 0
     @State var playerCardValue = 7
     
-    @State var pcScore = 0
+    //@State private var pcScore = 0
     @State var pcCardValue = 13
     
     @State var count = 0
     @State var countDownTimer = 5
     @State var timerRunning = true
+    
+    @State private var name = ""
+    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State var isPresenting = false
+    
     
     var body: some View {
-
+ 
             ZStack{
                 Image("background")
                     .resizable()
@@ -41,10 +50,12 @@ struct PlayingView: View {
                     HStack{
                         
                         VStack{
-                            Text("Player").font(.title).fontWeight(.black).padding(.bottom, 5.0)
+                            Text("\(name)").font(.title).fontWeight(.black).padding(.bottom, 5.0)
                             Text(String(playerScore))
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
+                        }.onAppear(){
+                            name = UserDefaults.standard.string(forKey: "name") ?? "Player"
                         }
                         Spacer()
                         VStack{
@@ -68,7 +79,7 @@ struct PlayingView: View {
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.lightColor).padding(.leading,20)
                                 .padding(.trailing,20).onReceive(timer){ timerOutput in
-                                    if count < 10 {
+                                    if count < 3 {
                                         if countDownTimer > 0 && timerRunning {
                                             if countDownTimer == 2 {
                                                 swipeBack()
@@ -81,7 +92,7 @@ struct PlayingView: View {
                                         }
                                     } else {
                                         timerRunning = false
-
+                                        dispalyingCurApp = .Score
                                     }
                                 }
                         }
@@ -93,7 +104,7 @@ struct PlayingView: View {
                     
                     Spacer()
                 }
-        }
+            }
     }
     
     
@@ -104,6 +115,7 @@ struct PlayingView: View {
         //Update the scores
         if playerCardValue > pcCardValue {
             playerScore += 1
+            
         } else if pcCardValue > playerCardValue{
             pcScore += 1
         }
@@ -121,6 +133,6 @@ struct PlayingView: View {
 
 struct PlayingView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayingView()
+        PlayingView(dispalyingCurApp: .constant(.Playing), playerScore: .constant(0), pcScore: .constant(0))
     }
 }
