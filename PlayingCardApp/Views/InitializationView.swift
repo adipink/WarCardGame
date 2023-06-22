@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct InitializationView: View {
+    let middleLongitude = 34.817549168324334
     @State private var showButton = true
     @State private var name = ""
     @State private var isPresentingNameEntry = false
+    
+    @StateObject var locationManager = LocationManager()
     
     @Binding var dispalyingCurApp: PlayingCardAppApp.CurrentScreen
     
@@ -57,20 +60,92 @@ struct InitializationView: View {
                     }
                     Spacer()
                     HStack {
+                        if locationManager.longitude > middleLongitude {
+                            Spacer()
+                            
+                            VStack {
+                                Image("halfRight")
+                                Text("East Side")
+                                    .font(.largeTitle)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.lightColor)
+                            }
+                        } else {
+                            VStack {
+                                Image("halfLeft")
+                                Text("West Side")
+                                    .font(.largeTitle)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.lightColor)
+                            }
+                            
+                            Spacer()
+                        }
+                        
+                        VStack {
+                            Button {
+                                dispalyingCurApp = .Playing
+                            } label: {
+                                Image("start")
+                            }
+                            .disabled(name.isEmpty)
+                            
+                            switch locationManager.locationManager.authorizationStatus {
+                            case .authorizedWhenInUse, .authorizedAlways:
+                                Text("Longitude: \(locationManager.locationManager.location?.coordinate.longitude.description ?? "Error loading")")
+                                    .fontWeight(.bold).foregroundColor(Color.lightColor)
+                            case .notDetermined:
+                                Text("Finding your location...")
+                                    .fontWeight(.bold).foregroundColor(Color.lightColor)
+                                ProgressView()
+                            case .restricted ,.denied:
+                                Text("Current location data was restricted or denied.")
+                                    .fontWeight(.bold).foregroundColor(Color.lightColor)
+                            @unknown default:
+                                ProgressView()
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    .onAppear {
+                                locationManager.startUpdatingLocation()
+                            }
+                            .onDisappear {
+                                locationManager.stopUpdatingLocation()
+                            }
+                    /*
+                    HStack {
                         VStack {
                             Image("halfLeft")
                             Text("West Side").font(.largeTitle)
                                 .fontWeight(.bold).foregroundColor(Color.lightColor)
                         }
-                        
                         Spacer()
-                    
+                        VStack{
+                            Button{
+                                dispalyingCurApp = .Playing
+                            } label: {
+                                Image("start")
+                            }.disabled(name.isEmpty)
+                            
+                            switch locationManager.locationManager.authorizationStatus {
+                            case .authorizedWhenInUse:
+                                Text("Longitude: \(locationManager.locationManager.location?.coordinate.longitude.description ?? "Error loading")")
+                            case .notDetermined:
+                                Text("Finding your location...")
+                                                ProgressView()
+                            case .restricted:
+                                Text("Current location data was restricted or denied.")
+                            case .denied:
+                                Text("Current location data was restricted or denied.")
+                            case .authorizedAlways:
+                                Text("Longitude: \(locationManager.locationManager.location?.coordinate.longitude.description ?? "Error loading")")
+                            @unknown default:
+                                ProgressView()
+                            }
+                            
+                        }
                         
-                        Button{
-                            dispalyingCurApp = .Playing
-                        } label: {
-                            Image("start")
-                        }.disabled(name.isEmpty)
                         Spacer()
                         
                         VStack {
@@ -79,7 +154,7 @@ struct InitializationView: View {
                                 .fontWeight(.bold).foregroundColor(Color.lightColor)
                         }
                     }.padding(.leading,20).padding(.trailing,20)
-     
+                             */
                 }
             }
         }

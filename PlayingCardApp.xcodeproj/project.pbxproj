@@ -13,6 +13,7 @@
 		632992F22A3B254D0095FC21 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632992F12A3B254D0095FC21 /* ScoreView.swift */; };
 		632992F42A3B257E0095FC21 /* PlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632992F32A3B257E0095FC21 /* PlayingView.swift */; };
 		632992F62A3B433E0095FC21 /* InitializationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632992F52A3B433E0095FC21 /* InitializationView.swift */; };
+		AD6D5D682A406667003A170F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6D5D672A406667003A170F /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		632992F12A3B254D0095FC21 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		632992F32A3B257E0095FC21 /* PlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingView.swift; sourceTree = "<group>"; };
 		632992F52A3B433E0095FC21 /* InitializationView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = InitializationView.swift; sourceTree = "<group>"; tabWidth = 4; };
+		AD6D5D672A406667003A170F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				632992E22A3B17AA0095FC21 /* PlayingCardAppApp.swift */,
+				AD6D5D672A406667003A170F /* LocationManager.swift */,
 				632992F02A3B251E0095FC21 /* Views */,
 				632992E62A3B17AE0095FC21 /* Assets.xcassets */,
 				632992E82A3B17AE0095FC21 /* Preview Content */,
@@ -153,6 +156,7 @@
 			files = (
 				632992E32A3B17AA0095FC21 /* PlayingCardAppApp.swift in Sources */,
 				632992F22A3B254D0095FC21 /* ScoreView.swift in Sources */,
+				AD6D5D682A406667003A170F /* LocationManager.swift in Sources */,
 				632992F62A3B433E0095FC21 /* InitializationView.swift in Sources */,
 				632992F42A3B257E0095FC21 /* PlayingView.swift in Sources */,
 			);
@@ -286,6 +290,7 @@
 				DEVELOPMENT_TEAM = 76D62XYL97;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App needs to access your location data to tell your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -315,6 +320,7 @@
 				DEVELOPMENT_TEAM = 76D62XYL97;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App needs to access your location data to tell your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
