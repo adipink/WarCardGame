@@ -11,3 +11,27 @@ The game proceeds for a total of ten rounds, culminating in the display of the f
 - Played automatically and after 10 rounds the winner is announced.
 
 ## Screens 
+**Opening screen: request Location's permission**
+![](images/first%20screen.png)
+
+
+**Opening screen: before entering name**
+![](images/secondscreen.png)
+
+
+**Name screen: let the user enter their name**
+![](images/thirdscreen.png)
+
+
+**Opening screen: after entering name**
+![](images/forthscreen.png)
+
+**Game screen**
+![](images/fifthscreen.png)
+
+![](images/sixthscreen.png)
+
+**Score screen**
+![](images/seventhscreen.png)
+
+
