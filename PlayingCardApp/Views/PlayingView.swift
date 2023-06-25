@@ -2,7 +2,7 @@
 //
 //  PlayingCardApp
 
-//  Created by Kristina on 11/06/2023.
+//   Created by Kristina & Adi
 //
 
 import SwiftUI
@@ -79,7 +79,7 @@ struct PlayingView: View {
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.lightColor).padding(.leading,20)
                                 .padding(.trailing,20).onReceive(timer){ timerOutput in
-                                    if count < 3 {
+                                    if count < 10 {
                                         if countDownTimer > 0 && timerRunning {
                                             if countDownTimer == 2 {
                                                 swipeBack()

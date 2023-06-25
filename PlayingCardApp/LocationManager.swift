@@ -2,7 +2,7 @@
 //  LocationManager.swift
 //  PlayingCardApp
 //
-//  Created by Adi on 19/06/2023.
+//  Created by Kristina & Adi
 //
 
 import Foundation

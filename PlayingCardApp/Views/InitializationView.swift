@@ -2,7 +2,7 @@
 //  InitializationView.swift
 //  PlayingCardApp
 //
-//  Created by Kristina on 15/06/2023.
+//  Created by Kristina & Adi
 //
 
 import SwiftUI
@@ -113,48 +113,6 @@ struct InitializationView: View {
                             .onDisappear {
                                 locationManager.stopUpdatingLocation()
                             }
-                    /*
-                    HStack {
-                        VStack {
-                            Image("halfLeft")
-                            Text("West Side").font(.largeTitle)
-                                .fontWeight(.bold).foregroundColor(Color.lightColor)
-                        }
-                        Spacer()
-                        VStack{
-                            Button{
-                                dispalyingCurApp = .Playing
-                            } label: {
-                                Image("start")
-                            }.disabled(name.isEmpty)
-                            
-                            switch locationManager.locationManager.authorizationStatus {
-                            case .authorizedWhenInUse:
-                                Text("Longitude: \(locationManager.locationManager.location?.coordinate.longitude.description ?? "Error loading")")
-                            case .notDetermined:
-                                Text("Finding your location...")
-                                                ProgressView()
-                            case .restricted:
-                                Text("Current location data was restricted or denied.")
-                            case .denied:
-                                Text("Current location data was restricted or denied.")
-                            case .authorizedAlways:
-                                Text("Longitude: \(locationManager.locationManager.location?.coordinate.longitude.description ?? "Error loading")")
-                            @unknown default:
-                                ProgressView()
-                            }
-                            
-                        }
-                        
-                        Spacer()
-                        
-                        VStack {
-                            Image("halfRight")
-                            Text("East Side").font(.largeTitle)
-                                .fontWeight(.bold).foregroundColor(Color.lightColor)
-                        }
-                    }.padding(.leading,20).padding(.trailing,20)
-                             */
                 }
             }
         }
@@ -163,15 +121,16 @@ struct InitializationView: View {
 struct NameEntryView: View {
     @Binding var name: String
     @Binding var isPresented: Bool
+    @State private var enteredName = ""
     
     var body: some View {
         VStack {
-            TextField("Enter your name", text: $name)
+            TextField("Enter your name", text: $enteredName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
             Button(action: {
-                isPresented = false
+                saveName()
             }) {
                 Text("Save")
                     .font(.headline)
@@ -182,8 +141,21 @@ struct NameEntryView: View {
             }
         }
         .padding()
+        .onDisappear {
+            name = enteredName
+        }
+    }
+    
+    private func saveName() {
+        if !enteredName.isEmpty {
+            UserDefaults.standard.set(true, forKey: "nameEntered")
+            UserDefaults.standard.set(enteredName, forKey: "name")
+            name = enteredName
+        }
+        isPresented = false
     }
 }
+
 
 struct InitializationView_Previews: PreviewProvider {
     static var previews: some View {

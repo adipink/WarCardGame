@@ -2,7 +2,7 @@
 //  PlayingCardAppApp.swift
 //  PlayingCardApp
 //
-//  Created by Kristina on 15/06/2023.
+//   Created by Kristina & Adi
 //
 
 import SwiftUI
